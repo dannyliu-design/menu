@@ -80,42 +80,67 @@
     <!-- Menu Section -->
     <main id="menu" class="max-w-6xl mx-auto px-6 py-24">
         
-        <div class="text-center mb-16">
+        <div class="text-center mb-10">
             <h2 class="text-4xl md:text-5xl text-slate-900 mb-4">Cocktail Selection</h2>
             <div class="w-20 h-1 bg-amber-700 mx-auto"></div>
         </div>
 
-        <!-- Filter Controls -->
-        <div class="flex flex-wrap justify-center gap-3 mb-16">
-            <button onclick="filterDrinks('all', this)" class="filter-btn active border border-stone-300 px-6 py-2 rounded-full text-sm transition font-medium">All Drinks</button>
-            <button onclick="filterDrinks('rum', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-sm transition font-medium">Rum</button>
-            <button onclick="filterDrinks('tequila', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-sm transition font-medium">Tequila</button>
-            <button onclick="filterDrinks('vodka-gin', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-sm transition font-medium">Vodka/Gin</button>
-            <button onclick="filterDrinks('bourbon', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-sm transition font-medium">Bourbon</button>
-            <button onclick="filterDrinks('mocktail', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-sm transition font-medium text-emerald-700 border-emerald-100">Mocktails</button>
+        <!-- Search + Filters -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
+            <!-- Search bar -->
+            <div class="relative w-full md:w-80">
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Search by name or ingredient..."
+                    class="w-full border border-stone-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-amber-600 bg-white/80"
+                    oninput="searchDrinks(this.value)"
+                />
+                <span class="absolute inset-y-0 right-3 flex items-center text-stone-400 pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+                    </svg>
+                </span>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="filterDrinks('all', this)" class="filter-btn active border border-stone-300 px-6 py-2 rounded-full text-xs md:text-sm transition font-medium">All Drinks</button>
+                <button onclick="filterDrinks('rum', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-xs md:text-sm transition font-medium">Rum</button>
+                <button onclick="filterDrinks('tequila', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-xs md:text-sm transition font-medium">Tequila</button>
+                <button onclick="filterDrinks('vodka-gin', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-xs md:text-sm transition font-medium">Vodka/Gin</button>
+                <button onclick="filterDrinks('bourbon', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-xs md:text-sm transition font-medium">Whiskey/Bourbon</button>
+                <button onclick="filterDrinks('mocktail', this)" class="filter-btn border border-stone-300 px-6 py-2 rounded-full text-xs md:text-sm transition font-medium text-emerald-700 border-emerald-100">Mocktails</button>
+            </div>
         </div>
 
         <div id="drink-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
             <!-- Koko Head -->
-            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100" data-category="rum">
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="rum"
+                 data-name="Koko Head"
+                 data-ingredients="Malibu Coconut Rum lime wedges mint leaves coconut water club soda">
                 <div class="mb-6">
                     <h3 class="text-3xl text-slate-900 mb-1">Koko Head</h3>
                     <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">Collins Glass</span>
                 </div>
                 <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
                     <li>1½oz Malibu Coconut Rum</li>
-                    <li>Fresh Lime & Mint Leaves</li>
-                    <li>Coconut Water & Club Soda</li>
+                    <li>2 Lime Wedges · 4 Mint Leaves</li>
+                    <li>3oz Coconut Water · Club Soda</li>
                 </ul>
                 <div class="bg-stone-50 p-4 rounded-lg">
                     <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
-                    <p class="text-xs italic text-stone-500">Muddle lime/mint. Add rum & water, toss and top with soda. Garnish with mint.</p>
+                    <p class="text-xs italic text-stone-500">Muddle lime & mint, add rum and coconut water with ice, toss, and top with soda. Garnish with mint sprig.</p>
                 </div>
             </div>
 
             <!-- Old Fut -->
-            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100" data-category="bourbon">
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="bourbon"
+                 data-name="Old Fut"
+                 data-ingredients="Bulleit Bourbon bar syrup bitters splash of water">
                 <div class="mb-6">
                     <h3 class="text-3xl text-slate-900 mb-1">Old Fut</h3>
                     <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">10oz Gibraltar</span>
@@ -123,131 +148,359 @@
                 <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
                     <li>2oz Bulleit Bourbon</li>
                     <li>½oz Bar Syrup</li>
-                    <li>2 dashes Bitters</li>
-                    <li>Splash of Water</li>
+                    <li>2 Dashes Bitters · Splash of Water</li>
                 </ul>
                 <div class="bg-stone-50 p-4 rounded-lg">
                     <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
-                    <p class="text-xs italic text-stone-500">Stir ingredients with ice ~40 times. Strain over fresh ice. Top with water.</p>
+                    <p class="text-xs italic text-stone-500">Stir bar syrup, bitters & bourbon with ice ~40 times. Strain over fresh ice and top with a splash of water.</p>
                 </div>
             </div>
 
             <!-- P.O.G. -->
-            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100" data-category="rum">
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="rum"
+                 data-name="P.O.G."
+                 data-ingredients="Malibu Coconut Rum lilikoi passionfruit syrup orange juice guava juice coconut water mint">
                 <div class="mb-6">
                     <h3 class="text-3xl text-slate-900 mb-1">P.O.G.</h3>
                     <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">Coupe Glass</span>
                 </div>
                 <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
                     <li>1½oz Malibu Coconut Rum</li>
-                    <li>Lilikoi Syrup & Guava Juice</li>
-                    <li>Orange Juice & Coconut Water</li>
+                    <li>1oz Lilikoi Syrup · 1oz Orange Juice</li>
+                    <li>1oz Guava Juice · 1oz Coconut Water</li>
                 </ul>
                 <div class="bg-stone-50 p-4 rounded-lg">
                     <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
-                    <p class="text-xs italic text-stone-500">Combine all, shake with ice, and strain into coupe. Garnish with Mint Sprig.</p>
+                    <p class="text-xs italic text-stone-500">Combine all ingredients with ice, shake, and strain into coupe. Garnish with a mint sprig.</p>
                 </div>
             </div>
 
-            <!-- Strawb Guava Mule -->
-            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100" data-category="vodka-gin">
+            <!-- Royal Punch -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="bourbon"
+                 data-name="Royal Punch"
+                 data-ingredients="Crown Royal Peach triple sec mango syrup pinot grigio fresh fruit wine glass">
                 <div class="mb-6">
-                    <h3 class="text-3xl text-slate-900 mb-1">Guava Mule</h3>
+                    <h3 class="text-3xl text-slate-900 mb-1">Royal Punch</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">Wine Glass</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>1oz Crown Royal Peach</li>
+                    <li>½oz Triple Sec · ½oz Mango Syrup</li>
+                    <li>3oz Pinot Grigio · Assorted Fresh Fruit</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Build over ice with fresh fruit in a wine glass, lightly stir to combine.</p>
+                </div>
+            </div>
+
+            <!-- Strawberry Guava Mule -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="vodka-gin"
+                 data-name="Strawberry Guava Mule"
+                 data-ingredients="Absolut Vodka strawberries lime wedges bar syrup guava juice ginger beer">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">Strawberry Guava Mule</h3>
                     <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">Copper Mug</span>
                 </div>
                 <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
                     <li>1½oz Absolut Vodka</li>
-                    <li>Strawberries & Lime Wedges</li>
-                    <li>Guava Juice & Ginger Beer</li>
+                    <li>2 Strawberries · 2 Lime Wedges</li>
+                    <li>¼oz Bar Syrup · Guava Juice · Ginger Beer</li>
                 </ul>
                 <div class="bg-stone-50 p-4 rounded-lg">
                     <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
-                    <p class="text-xs italic text-stone-500">Muddle fruit. Shake vodka/syrup. Strain over ice. Top with juice & ginger beer.</p>
+                    <p class="text-xs italic text-stone-500">Muddle strawberries & lime, add vodka, syrup & ice. Shake, strain into copper mug, top with guava juice & ginger beer. Garnish with strawberry.</p>
                 </div>
             </div>
 
             <!-- No Can (Mocktail) -->
-            <div class="drink-card border-2 border-emerald-100 bg-emerald-50/20 p-8 rounded-2xl shadow-sm" data-category="mocktail">
+            <div class="drink-card border-2 border-emerald-100 bg-emerald-50/20 p-8 rounded-2xl shadow-sm"
+                 data-category="mocktail"
+                 data-name="No Can"
+                 data-ingredients="coconut water pineapple juice guava juice lime mint mocktail">
                 <div class="mb-6">
                     <h3 class="text-3xl text-emerald-800 mb-1 italic">No Can</h3>
-                    <span class="text-[10px] tracking-widest uppercase text-emerald-600 font-bold">Non-Alcoholic</span>
+                    <span class="text-[10px] tracking-widest uppercase text-emerald-600 font-bold">Non-Alcoholic · 14oz Gibraltar</span>
                 </div>
                 <ul class="text-[15px] space-y-2 mb-8 text-emerald-900/70 border-l-2 border-emerald-200 pl-4">
                     <li>2oz Coconut Water</li>
-                    <li>2oz Pineapple & Guava Juice</li>
-                    <li>Fresh Squeezed Lime</li>
+                    <li>2oz Pineapple Juice · 2oz Guava Juice</li>
+                    <li>1 Lime Wedge (squeezed & tossed)</li>
                 </ul>
                 <div class="bg-white/60 p-4 rounded-lg">
                     <p class="text-[10px] uppercase tracking-tighter font-bold text-emerald-800 mb-1">Method</p>
-                    <p class="text-xs italic text-emerald-700">Combine in 14oz glass with ice. Garnish with mint & lime on a pick.</p>
+                    <p class="text-xs italic text-emerald-700">Build over ice in a 14oz Gibraltar. Garnish with mint sprig & lime wedge on a pick.</p>
+                </div>
+            </div>
+
+            <!-- Can Can -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="vodka-gin"
+                 data-name="Can Can"
+                 data-ingredients="Ocean Vodka coconut water pineapple juice guava juice lime mint">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">Can Can</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">14oz Mixing Glass</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>1½oz Ocean Vodka</li>
+                    <li>1½oz Coconut Water</li>
+                    <li>2oz Pineapple Juice · 2oz Guava Juice</li>
+                    <li>1 Lime Wedge (squeezed & tossed)</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Combine in mixing glass, add ice, shake & strain over fresh ice in 14oz glass. Garnish with mint sprig & lime wedge.</p>
+                </div>
+            </div>
+
+            <!-- H-3 -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="vodka-gin"
+                 data-name="H-3"
+                 data-ingredients="Hendricks Gin honey grapefruit juice soda water">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">H-3</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">10oz Gibraltar</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>1½oz Hendricks Gin</li>
+                    <li>1oz Honey</li>
+                    <li>2oz Grapefruit Juice · Soda Water</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Shake gin, honey & grapefruit with ice, strain over fresh ice and top with soda water.</p>
                 </div>
             </div>
 
             <!-- Lucky Sunset -->
-            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100" data-category="tequila">
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="tequila"
+                 data-name="Lucky Sunset"
+                 data-ingredients="1800 Silver Tequila triple sec lilikoi syrup pineapple juice li hing mui">
                 <div class="mb-6">
                     <h3 class="text-3xl text-slate-900 mb-1">Lucky Sunset</h3>
                     <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">14oz Glass</span>
                 </div>
                 <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
                     <li>2oz 1800 Silver Tequila</li>
-                    <li>Triple Sec & Lilikoi Syrup</li>
-                    <li>Pineapple Juice | Li Hing Mui Rim</li>
+                    <li>½oz Triple Sec · 1oz Lilikoi Syrup</li>
+                    <li>3oz Pineapple Juice · Li Hing Mui Rim</li>
                 </ul>
                 <div class="bg-stone-50 p-4 rounded-lg">
                     <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
-                    <p class="text-xs italic text-stone-500">Shake and strain over fresh ice. Serve in a glass with a Li Hing rim.</p>
+                    <p class="text-xs italic text-stone-500">Shake with ice and strain over fresh ice into a Li Hing–rimmed 14oz glass.</p>
                 </div>
             </div>
 
-            <!-- Mai Tai -->
-            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100" data-category="rum">
+            <!-- Lilikoi Mojito -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="rum"
+                 data-name="Lilikoi Mojito"
+                 data-ingredients="Sailor Jerry rum pineapple juice passionfruit syrup club soda lime mint">
                 <div class="mb-6">
-                    <h3 class="text-3xl text-slate-900 mb-1">Mai Tai</h3>
-                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">14oz Glass</span>
+                    <h3 class="text-3xl text-slate-900 mb-1">Lilikoi Mojito</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">Collins Glass</span>
                 </div>
                 <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
-                    <li>Old Lahaina Silver & Dark Rum</li>
-                    <li>Orange Curacao | Orgeat</li>
-                    <li>Lime, Pineapple & Orange Juice</li>
+                    <li>1½oz Sailor Jerry Rum</li>
+                    <li>½oz Pineapple Juice · 1oz Passionfruit Syrup</li>
+                    <li>2 Lime Wedges · 8 Mint Leaves</li>
+                    <li>2oz Club Soda</li>
                 </ul>
                 <div class="bg-stone-50 p-4 rounded-lg">
                     <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
-                    <p class="text-xs italic text-stone-500">Shake all but dark rum. Strain. Float dark rum on top. Garnish with pineapple.</p>
+                    <p class="text-xs italic text-stone-500">Muddle mint & lime, add pineapple, passionfruit & rum with ice, shake & strain into Collins. Top with soda, garnish with mint & lime.</p>
                 </div>
             </div>
 
             <!-- Naked Kane -->
-            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100" data-category="vodka-gin">
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="vodka-gin"
+                 data-name="Naked Kane"
+                 data-ingredients="Bombay Sapphire Gin club soda lemon juice agave syrup mint cucumber">
                 <div class="mb-6">
                     <h3 class="text-3xl text-slate-900 mb-1">Naked Kane</h3>
                     <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">10oz Gibraltar</span>
                 </div>
                 <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
                     <li>1½oz Bombay Sapphire Gin</li>
-                    <li>Agave & Lemon Juice</li>
-                    <li>Fresh Mint & Cucumber</li>
+                    <li>½oz Fresh Lemon Juice · ½oz Agave Syrup</li>
+                    <li>6 Mint Leaves · 2 Cucumber Slices</li>
+                    <li>2oz Club Soda</li>
                 </ul>
                 <div class="bg-stone-50 p-4 rounded-lg">
                     <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
-                    <p class="text-xs italic text-stone-500">Muddle mint/cucumber. Shake gin, agave, lemon. Top with soda.</p>
+                    <p class="text-xs italic text-stone-500">Muddle mint & cucumber, add gin, lemon & agave with ice. Shake & strain over fresh ice, top with soda. Garnish with mint & cucumber.</p>
+                </div>
+            </div>
+
+            <!-- Maple Old Fashioned -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="bourbon"
+                 data-name="Maple Old Fashioned"
+                 data-ingredients="Makers Mark maple syrup bitters club soda orange twist">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">Maple Old Fashioned</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">10oz Gibraltar</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>2oz Maker's Mark</li>
+                    <li>½oz Maple Syrup</li>
+                    <li>2 Dashes Bitters · 1oz Club Soda</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Stir whiskey, maple & bitters with ice ~40 times. Strain over fresh ice, top with soda, express orange over drink and drop twist in.</p>
+                </div>
+            </div>
+
+            <!-- Pink Elephant -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="vodka-gin"
+                 data-name="Pink Elephant"
+                 data-ingredients="Grey Goose Vodka peach schnapps triple sec orange juice pineapple juice cranberry sugar rim">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">Pink Elephant</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">14oz Glass</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>¾oz Grey Goose Vodka · ¾oz Peach Schnapps</li>
+                    <li>¾oz Triple Sec</li>
+                    <li>1½oz Orange Juice · 1½oz Pineapple Juice</li>
+                    <li>¼oz Cranberry Juice · Sugar Rim</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-titter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Add all ingredients with ice, shake. Rim 14oz glass with sugar, pour over fresh ice, garnish with orange wheel.</p>
+                </div>
+            </div>
+
+            <!-- Skinny Rita -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="tequila"
+                 data-name="Skinny Rita"
+                 data-ingredients="Patron Silver Patron Citronge fresh lime juice fresh lemon juice agave syrup">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">Skinny Rita</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">Collins Glass</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>1oz Patron Silver</li>
+                    <li>1oz Patron Citronge</li>
+                    <li>1oz Fresh Lime Juice · ½oz Fresh Lemon Juice</li>
+                    <li>½oz Agave Syrup</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-titter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Shake all ingredients with ice and pour into Collins over fresh ice. Garnish with lime wedge.</p>
                 </div>
             </div>
 
             <!-- 1800 Margarita -->
-            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100" data-category="tequila">
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="tequila"
+                 data-name="1800 Margarita"
+                 data-ingredients="1800 Silver Tequila Cointreau lime sour mix lime wedge salt rim">
                 <div class="mb-6">
-                    <h3 class="text-3xl text-slate-900 mb-1">Margarita</h3>
+                    <h3 class="text-3xl text-slate-900 mb-1">1800 Margarita</h3>
                     <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">14oz Glass</span>
                 </div>
                 <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
                     <li>2oz 1800 Silver Tequila</li>
-                    <li>½oz Cointreau Liqueur</li>
-                    <li>Lime Sour Mix | Fresh Lime</li>
+                    <li>½oz Cointreau</li>
+                    <li>3oz Lime Sour Mix</li>
+                    <li>1 Lime Wedge (squeezed & tossed) · Salt Rim (optional)</li>
                 </ul>
                 <div class="bg-stone-50 p-4 rounded-lg">
-                    <p class="text-[10px] uppercase tracking-tighter font-bold text-amber-700 mb-1">Method</p>
-                    <p class="text-xs italic text-stone-500">Shake & strain. Salt rim on request. Garnish with lime wedge.</p>
+                    <p class="text-[10px] uppercase tracking-titter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Add all to mixing glass with ice, shake & strain over fresh ice in 14oz glass. Salt rim on request, garnish with lime wedge.</p>
+                </div>
+            </div>
+
+            <!-- Blackberry Basil Mule -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="vodka-gin"
+                 data-name="Blackberry Basil Mule"
+                 data-ingredients="Absolut Vodka blackberries basil lime bar syrup ginger beer mule">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">Blackberry Basil Mule</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">Copper Mug</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>2oz Absolut Vodka</li>
+                    <li>2 Blackberries · 1 Basil Leaf</li>
+                    <li>2 Lime Wedges · ¼oz Bar Syrup</li>
+                    <li>Ginger Beer</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-titter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Muddle blackberries, basil & lime, add vodka, syrup & ice. Shake & strain into copper mug, top with ginger beer. Garnish with 2 blackberries & basil leaf.</p>
+                </div>
+            </div>
+
+            <!-- Blue Hawaiian -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="rum"
+                 data-name="Blue Hawaiian"
+                 data-ingredients="Malibu Coconut Rum blue curacao coconut cream lime juice pineapple juice">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">Blue Hawaiian</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">14oz Glass</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>1½oz Malibu Coconut Rum</li>
+                    <li>½oz Blue Curacao</li>
+                    <li>1oz Coconut Cream · ½oz Lime Juice</li>
+                    <li>2oz Pineapple Juice</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-titter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Shake with ice and strain over fresh ice. Garnish with pineapple wedge & crown.</p>
+                </div>
+            </div>
+
+            <!-- Hawaiian Punch -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="bourbon"
+                 data-name="Hawaiian Punch"
+                 data-ingredients="Crown Royal amaretto pineapple juice pineapple wedge cherry">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">Hawaiian Punch</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">14oz Glass</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>1oz Crown Royal</li>
+                    <li>½oz Amaretto</li>
+                    <li>1oz Pineapple Juice</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-titter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Add all ingredients to mixing glass with ice, shake & strain over fresh ice. Garnish with pineapple wedge & cherry on a pick.</p>
+                </div>
+            </div>
+
+            <!-- Mai Tai -->
+            <div class="drink-card bg-white p-8 rounded-2xl shadow-sm border border-stone-100"
+                 data-category="rum"
+                 data-name="Mai Tai"
+                 data-ingredients="Old Lahaina Silver Rum Old Lahaina Dark Rum orange curacao orgeat lime pineapple orange juice">
+                <div class="mb-6">
+                    <h3 class="text-3xl text-slate-900 mb-1">Mai Tai</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-stone-400 font-bold">14oz Glass</span>
+                </div>
+                <ul class="text-[15px] space-y-2 mb-8 text-stone-600 border-l-2 border-amber-100 pl-4">
+                    <li>1oz Old Lahaina Silver Rum · ½oz Old Lahaina Dark Rum (float)</li>
+                    <li>½oz Orange Curacao · ½oz Orgeat Syrup</li>
+                    <li>¾oz Lime Juice · 1½oz Pineapple Juice · ½oz Orange Juice</li>
+                </ul>
+                <div class="bg-stone-50 p-4 rounded-lg">
+                    <p class="text-[10px] uppercase tracking-titter font-bold text-amber-700 mb-1">Method</p>
+                    <p class="text-xs italic text-stone-500">Shake all except dark rum with ice and strain over fresh ice. Float dark rum on top. Garnish with pineapple wedge & crown.</p>
                 </div>
             </div>
 
@@ -280,26 +533,47 @@
         </div>
     </footer>
 
-    <script>
-        function filterDrinks(category, btnElement) {
-            // Update button UI
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+ <script>
+    let currentCategory = 'all';
+    let currentSearch = '';
 
-            // Filter cards
-            const cards = document.querySelectorAll('.drink-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.classList.remove('hidden-card');
-                    // Small timeout to trigger transition if using opacity
-                    setTimeout(() => card.style.opacity = '1', 10);
-                } else {
-                    card.classList.add('hidden-card');
-                    card.style.opacity = '0';
-                }
-            });
-        }
-    </script>
+    function applyFilters() {
+        const cards = document.querySelectorAll('.drink-card');
+        cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const name = card.getAttribute('data-name') || '';
+            const ingredients = card.getAttribute('data-ingredients') || '';
+            const searchableText = (name + ' ' + ingredients).toLowerCase();
+
+            const matchesCategory =
+                (currentCategory === 'all' || cardCategory === currentCategory);
+            const matchesSearch = searchableText.includes(currentSearch);
+
+            if (matchesCategory && matchesSearch) {
+                card.classList.remove('hidden-card');   // SHOW
+                card.style.opacity = '1';
+            } else {
+                card.classList.add('hidden-card');      // HIDE
+                card.style.opacity = '0';
+            }
+        });
+    }
+
+    function filterDrinks(category, btnElement) {
+        currentCategory = category;
+
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+
+        applyFilters();
+    }
+
+    function searchDrinks(value) {
+        currentSearch = value.toLowerCase();
+        applyFilters();
+    }
+</script>
+
 </body>
 </html>
